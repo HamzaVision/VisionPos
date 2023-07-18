@@ -20,3 +20,62 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+/* Basic layout styles */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #f0f0f0;
+    transition: width 0.3s ease-in-out;
+    overflow-y: auto; /* Add vertical scroll if the content exceeds the sidebar height */
+}
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .sidebar li {
+        padding: 10px 15px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .sidebar li:last-child {
+            border-bottom: none;
+        }
+
+    /* Sidebar icon styles */
+    .sidebar i {
+        margin-right: 10px;
+    }
+
+/* Collapsed state styles */
+.collapsed {
+    width: 60px;
+}
+
+.expanded {
+    margin-left: 60px;
+}
+
+/* Sidebar toggle button styles */
+#toggleSidebarButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 9999;
+}
