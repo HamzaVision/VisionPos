@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Vision Plus Job\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj": {}
+    "E:\\Hamza\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj": {}
   },
   "projects": {
-    "D:\\Vision Plus Job\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj": {
+    "E:\\Hamza\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Vision Plus Job\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj",
+        "projectUniqueName": "E:\\Hamza\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj",
         "projectName": "VisionPos",
-        "projectPath": "D:\\Vision Plus Job\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\Vision Plus Job\\VisionPos\\VisionPos\\VisionPos\\obj\\",
+        "projectPath": "E:\\Hamza\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj",
+        "packagesPath": "C:\\Users\\Abdul Raheem\\.nuget\\packages\\",
+        "outputPath": "E:\\Hamza\\VisionPos\\VisionPos\\VisionPos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Abdul Raheem\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.300-preview.23179.2\\RuntimeIdentifierGraph.json"
         }
       }
     }
