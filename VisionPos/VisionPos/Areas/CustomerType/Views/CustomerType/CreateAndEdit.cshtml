@@ -7,15 +7,46 @@
 
 
 @{ 
-    var isEditMode = Model.Id > 0;
-    var action = isEditMode ? "Edit" : "Create";
+    var action = "";
+    if(Model.Id == 0)
+    {
+        action = "Create";
+    }
+    else
+    {
+        action = "Edit";
+    }
+
 }
 
-<form asp-action="@action" asp-route-Id="@Model.Id">
+<form method="post" asp-action="@action" >
 <div style="padding:80px">
     <div class="border whitebackgroundBorder" style="padding:100px;width:800px;height:auto">
         <div class="row">
-            <h4>@(isEditMode ? "Edit" : "Create")</h4>
+            @if (action == "Edit")
+             {
+                <h4 class="text-info">Edit</h4>
+                <div class="row">
+
+                </div>
+             }
+            else
+            {
+                <h4 class="text-info">Create</h4>
+                <div class="row">
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label">Name</label>
+                    </div>
+                    <div class="col-10 form-group-row">
+                        <input asp-for="@Model.CustomerType" class="form-control" />
+                        <span asp-validation-for="@Model.CustomerType" class="text-danger"></span>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <partial name="_CreateAndBackToListPartialView"/>
+            }
+
         </div>
 
         <br>

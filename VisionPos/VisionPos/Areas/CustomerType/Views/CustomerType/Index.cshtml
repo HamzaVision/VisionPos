@@ -28,7 +28,7 @@
                         @foreach (var item in @Model)
                         {
                             <tr>
-                                <td>@item.CustomerType</td>
+                                <td class="text-bg-dark">@item.CustomerType</td>
                                 <td><partial name="_EditAndViewPartialView" model="@item.Id"/></td>
                             </tr>
                         }

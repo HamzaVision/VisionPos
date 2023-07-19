@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VisionPos.Data;
-
+using VisionPos.Models;
 namespace VisionPos.Areas.CustomerType.Controllers
 {
     [Area("CustomerType")]
@@ -18,7 +18,17 @@ namespace VisionPos.Areas.CustomerType.Controllers
 
         public IActionResult Create()
         {
-            return View("CreateAndEdit");
+            var cus = new CustomerTypes();
+            return View("CreateAndEdit", cus);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CustomerTypes obj)
+        {
+            obj.CreationDate = DateTime.Now;
+            _db.CustomerTypes.Add(obj);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
     }
 }
