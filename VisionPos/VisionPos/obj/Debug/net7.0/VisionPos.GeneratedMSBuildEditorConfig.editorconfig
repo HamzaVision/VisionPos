@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = E:\Hamza\VisionPos\VisionPos\VisionPos
 build_property._RazorSourceGeneratorDebug = 
 
+[E:/Hamza/VisionPos/VisionPos/VisionPos/Areas/CustomerType/Views/CustomerType/CreateAndEdit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJUeXBlXFZpZXdzXEN1c3RvbWVyVHlwZVxDcmVhdGVBbmRFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Hamza/VisionPos/VisionPos/VisionPos/Areas/CustomerType/Views/CustomerType/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQ3VzdG9tZXJUeXBlXFZpZXdzXEN1c3RvbWVyVHlwZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -210,6 +214,14 @@ build_metadata.AdditionalFiles.CssScope =
 
 [E:/Hamza/VisionPos/VisionPos/VisionPos/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hamza/VisionPos/VisionPos/VisionPos/Views/Shared/_CreateButtonPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9DcmVhdGVCdXR0b25QYXJ0aWFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hamza/VisionPos/VisionPos/VisionPos/Views/Shared/_EditAndViewPartialView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9FZGl0QW5kVmlld1BhcnRpYWxWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/Hamza/VisionPos/VisionPos/VisionPos/Views/Shared/_LoginPartial.cshtml]

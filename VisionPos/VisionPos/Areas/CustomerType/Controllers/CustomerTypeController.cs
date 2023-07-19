@@ -15,5 +15,10 @@ namespace VisionPos.Areas.CustomerType.Controllers
         {
             return View(_db.CustomerTypes.ToList());
         }
+
+        public IActionResult Create()
+        {
+            return View("CreateAndEdit");
+        }
     }
 }

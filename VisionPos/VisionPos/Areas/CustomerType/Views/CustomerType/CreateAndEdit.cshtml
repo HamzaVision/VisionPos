@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model CustomerTypes
+
+
+@{ 
+    var isEditMode = Model.Id > 0;
+    var action = isEditMode ? "Edit" : "Create";
+}
+
+<form asp-action="@action" asp-route-Id="@Model.Id">
+<div style="padding:80px">
+    <div class="border whitebackgroundBorder" style="padding:100px;width:800px;height:auto">
+        <div class="row">
+            <h4>@(isEditMode ? "Edit" : "Create")</h4>
+        </div>
+
+        <br>
+        
+    </div>
+</div>
+</form>
+
+
+
+
+
