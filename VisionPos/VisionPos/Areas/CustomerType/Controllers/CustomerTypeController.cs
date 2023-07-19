@@ -22,11 +22,25 @@ namespace VisionPos.Areas.CustomerType.Controllers
             return View("CreateAndEdit", cus);
         }
 
+        public IActionResult Edit(int id)
+        {
+            var cus = _db.CustomerTypes.FirstOrDefault(x => x.Id == id);
+            return View("CreateAndEdit", cus);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Create(CustomerTypes obj)
         {
             obj.CreationDate = DateTime.Now;
             _db.CustomerTypes.Add(obj);
+            await _db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(CustomerTypes obj)
+        {
+            _db.CustomerTypes.Update(obj);
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

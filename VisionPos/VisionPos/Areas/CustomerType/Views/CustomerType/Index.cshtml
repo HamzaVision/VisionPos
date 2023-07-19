@@ -26,15 +26,19 @@
                     </thead>
                     <tbody>
                         @foreach (var item in @Model)
-                        {
+                         {
                             <tr>
                                 <td class="text-bg-dark">@item.CustomerType</td>
                                 <td><partial name="_EditAndViewPartialView" model="@item.Id"/></td>
                             </tr>
-                        }
+                         }
 
                     </tbody>
                 </table>
+             }
+             else 
+             {
+                <h3>There is no Customer Type Present in the data base....</h3>
              }
         </div>
     </div>

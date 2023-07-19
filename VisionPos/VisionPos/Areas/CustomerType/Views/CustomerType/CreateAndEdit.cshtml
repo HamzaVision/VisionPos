@@ -24,12 +24,30 @@
     <div class="border whitebackgroundBorder" style="padding:100px;width:800px;height:auto">
         <div class="row">
             @if (action == "Edit")
-             {
+            {
                 <h4 class="text-info">Edit</h4>
                 <div class="row">
-
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label">Name</label>
+                    </div>
+                    <div class="col-10 form-group-row">
+                        <input asp-for="@Model.CustomerType" class="form-control" value="@Model.CustomerType" />
+                        <span asp-validation-for="@Model.CustomerType" class="text-danger"></span>
+                    </div>
                 </div>
-             }
+                <div class="row">
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.CreationDate"></label>
+                    </div>
+                    <div class="col-10 form-group-row">
+                        <input type="datetime" asp-for="@Model.CreationDate" readonly class="form-control" value="@Model.CreationDate" />
+                        @*<span asp-validation-for="@Model.CreationDate" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <br />
+                <br />
+                <partial name="_EditAndBackToListPartialView" />
+            }
             else
             {
                 <h4 class="text-info">Create</h4>
@@ -44,7 +62,7 @@
                 </div>
                 <br />
                 <br />
-                <partial name="_CreateAndBackToListPartialView"/>
+                <partial name="_CreateAndBackToListPartialView" />
             }
 
         </div>
