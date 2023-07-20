@@ -11,11 +11,11 @@
         <div class="border whitebackgroundBorder" style="padding:100px;width:800px;height:auto">
             <div class="row">
                 <div class="col-6 text-info"><h4><strong>Customer Type</strong></h4></div>
-                <div class="col-6 text-end"><partial name="_CreateButtonPartial"/></div>
+                <div class="col-6 text-end"><partial name="_CreateButtonPartial" /></div>
             </div>
             <br>
             @if (Model.Count() > 0)
-             {
+            {
                 <table class="table table-striped border">
                     <thead>
                         <tr class="table-secondary">
@@ -26,25 +26,66 @@
                     </thead>
                     <tbody>
                         @foreach (var item in @Model)
-                         {
+                        {
                             <tr>
                                 <td class="text-bg-dark">@item.CustomerType</td>
-                                <td><partial name="_EditAndViewPartialView" model="@item.Id"/></td>
+                                <td><partial name="_EditAndViewPartialView" model="@item.Id" /></td>
                             </tr>
-                         }
+                        }
 
                     </tbody>
                 </table>
-             }
-             else 
-             {
+            }
+            else
+            {
                 <h3>There is no Customer Type Present in the data base....</h3>
-             }
+            }
         </div>
     </div>
 
 
+    <div class="modal fade" id="MyModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog-centered modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-light justify-content-center">
+                    <h5 class="modal-title">Customer Type Details</h5>
+                </div>
+                <div class="modal-body justify-content-center" id="MyModalContent">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" style="width:20%" data-dismiss="modal" data-bs-dismiss="#MyModal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
+@section scripts{
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-Ky0kt+grVhx3fdY/uj4EvCCmQF0/k3ZJT4F2rn6XzTAHqlRsTnhXjRx0o8xx0tnh" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            var positionbackURL = '/CustomerType/CustomerType/GetcustomertypeDetails';
 
+            // Event handler for the Details button click
+            $('.anchorDetail[data-id]').on('click', function () {
+                var id = $(this).data('id');
 
+                $.ajax({
+                    type: "GET",
+                    url: positionbackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { id: id },
+                    cache: false,
+                    dataType: 'html',
+                    success: function (data) {
+                        $('#MyModalContent').html(data);
+                        $('#MyModal').modal('show');
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+            });
+        });
+    </script>
+}

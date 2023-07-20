@@ -44,5 +44,14 @@ namespace VisionPos.Areas.CustomerType.Controllers
             await _db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult GetcustomertypeDetails(int id)
+        {
+            var customer = _db.CustomerTypes.FirstOrDefault(x => x.Id == id);
+            return PartialView("_CustomerTypeDetailsPartialView", customer);
+        }
+
+
     }
 }

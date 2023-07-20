@@ -40,7 +40,7 @@
                         <label class="col-form-label" asp-for="@Model.CreationDate"></label>
                     </div>
                     <div class="col-10 form-group-row">
-                        <input type="datetime" asp-for="@Model.CreationDate" readonly class="form-control" value="@Model.CreationDate" />
+                        <input type="datetime" asp-for="@Model.CreationDate" readonly class="form-control" value="@Model.CreationDate.ToString("dd-MMM-yyyy")" />
                         @*<span asp-validation-for="@Model.CreationDate" class="text-danger"></span>*@
                     </div>
                 </div>

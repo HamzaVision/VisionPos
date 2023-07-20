@@ -3,9 +3,18 @@
 *@
 @model int
 
+
 <td style="width:150px">
     <div class="btn-group" role="group">
         <a class="btn btn-primary text-white" asp-action="Edit" asp-route-Id="@Model"><i class="fa-solid fa-pen-to-square"></i></a>
-        <a class="btn btn-success text-white" asp-action="Details" asp-route-Id="@Model"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <button type="submit" class="btn btn-success anchorDetail" data-id="@Model">
+            <i class="fa-solid fa-search" data-toggle="modal"></i>
+        </button>
     </div>
 </td>
+
+
+
+
+
+    
