@@ -1,0 +1,104 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model VisionPos.Models.ViewModels.CustomerCustomerTypeListViewModel
+
+
+@{
+    var action = "";
+    if (Model.Customer.Id == 0)
+    {
+        action = "Create";
+    }
+    else
+    {
+        action = "Edit";
+    }
+
+}
+
+<form method="post" asp-action="@action" >
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div style="padding:80px">
+        <div class="border whitebackgroundBorder" style="padding:100px;width:800px;height:auto">
+
+            @if (action == "Edit")
+            {
+                <h4 class="text-info">Edit</h4>
+                <div class="row">
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label">Name</label>
+                    </div>
+                    <div class="col-10 form-group-row">
+                        <input asp-for="@Model.Customer.CustomerType" class="form-control" value="@Model.Customer.CustomerType" />
+                        <span asp-validation-for="@Model.Customer.CustomerType" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.Customer.CreationDate"></label>
+                    </div>
+                    <div class="col-10 form-group-row">
+                        <input type="datetime" asp-for="@Model.Customer.CreationDate" readonly class="form-control" value="@Model.Customer.CreationDate.ToString("dd-MMM-yyyy")" />
+                        @*<span asp-validation-for="@Model.CreationDate" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <br />
+                <br />
+                <partial name="_EditAndBackToListPartialView" />
+            }
+            else
+            {
+                <h4 class="text-info">Create</h4>
+                <div class="row">
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.Customer.Id"></label>
+                        <input asp-for="@Model.Customer.Id" readonly class="form-control" />
+                        @*<span asp-validation-for="@Model.Id" class="text-danger"></span>*@
+                    </div>
+                    <div class="col-6 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.Customer.Name"></label>
+                        <input asp-for="@Model.Customer.Name" id="NameId" class="form-control" />
+                        <span asp-validation-for="@Model.Customer.Name" class="text-danger"></span>
+                    </div>
+                    <div class="col-4 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.Customer.CustomerType"></label>
+                        <select id="ddlCustomerTypeList" asp-for="@Model.Customer.CustomerType" asp-items="@Model.CustomersList" class="form-control"></select>
+                        @*<span asp-validation-for="@Model.Name" class="text-danger"></span>*@
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.Customer.Address"></label>
+                        <input asp-for="@Model.Customer.Address" class="form-control" />
+                        <span asp-validation-for="@Model.Customer.Address" class="text-danger"></span>
+                    </div>
+                    <div class="col-4 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.Customer.PhoneNumber"></label>
+                        <input asp-for="@Model.Customer.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="@Model.Customer.PhoneNumber" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 form-group-row text-end" style="padding:10px 1px;">
+                        <input type="checkbox" asp-for="@Model.Customer.IsActive" />
+                        <span asp-validation-for="@Model.Customer.IsActive" class="text-danger"></span>
+                    </div>
+                    <div class="col-1 form-group-row text-start">
+                        <label class="col-form-label" asp-for="@Model.Customer.IsActive"></label>
+                    </div>
+                </div>
+                <partial name="_CreateAndBackToListPartialView" />
+            }
+
+        </div>
+
+
+    </div>
+</form>
+
+
+
+
