@@ -31,7 +31,7 @@
                     {
                         <tr>
                             <td class="text-bg-dark">@item.Name</td>
-                            <td class="text-bg-dark">@item.CustomerType</td>
+                            <td class="text-bg-dark">@item.CustomerTypes.CustomerType</td>
                             <td class="text-bg-dark">@item.PhoneNumber</td>
                             <td><partial name="_EditAndViewPartialView" model="@item.Id" /></td>
                         </tr>
@@ -52,7 +52,7 @@
     <div class="modal-dialog-centered modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-dark text-light justify-content-center">
-                <h5 class="modal-title">Customer Type Details</h5>
+                <h5 class="modal-title">Customer Details</h5>
             </div>
             <div class="modal-body justify-content-center" id="MyModalContent">
             </div>
