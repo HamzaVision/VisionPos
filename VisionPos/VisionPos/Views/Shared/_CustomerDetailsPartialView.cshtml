@@ -14,7 +14,7 @@
 <br>
 <div class="row">
     <div class="col-2 form-group-row">
-        <label class="col-form-label" asp-for="@Model.CustomerTypes.CustomerType"></label>
+        <label class="col-form-label">Type</label>
     </div>
     <div class="col-10 form-group-row">
         <input asp-for="@Model.CustomerTypes.CustomerType" class="form-control" readonly value="@Model.CustomerTypes.CustomerType" />
@@ -44,7 +44,7 @@
 <br>
 <div class="row">
     <div class="col-2 form-group-row">
-        <label class="col-form-label" asp-for="@Model.CreationDate"></label>
+        <label class="col-form-label">Date</label>
     </div>
     <div class="col-10 form-group-row">
         <input type="datetime" asp-for="@Model.CreationDate" readonly class="form-control" value="@Model.CreationDate.ToString("dd-MMM-yyyy")" />

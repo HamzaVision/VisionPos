@@ -23,16 +23,18 @@ namespace VisionPos.Models
         [StringLength(15)]
         public string PhoneNumber { get; set; }
 
-        [DisplayName("CustomerType")]
+        [DisplayName("Type")]
         public int CustomerType { get; set; }
 
         [ForeignKey("CustomerType")]
         public virtual CustomerTypes CustomerTypes { get; set; }
 
         [Required]
+        [DisplayName("Active")]
         public Boolean IsActive { get; set; }
 
         [Required]
+        [DisplayName("Date")]
         public DateTime CreationDate { get; set; }
     }
 }

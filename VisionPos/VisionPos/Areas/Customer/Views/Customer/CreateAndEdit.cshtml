@@ -69,13 +69,13 @@
                         <span asp-validation-for="@Model.Customer.PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="col-2 row" style="padding:0px 0px 0px 13px">
                     <div class="col-1 form-group-row text-end" style="padding:10px 1px;">
-                        <input type="checkbox" asp-for="@Model.Customer.IsActive" value="@Model.Customer.IsActive"/>
+                        <input type="checkbox" asp-for="@Model.Customer.IsActive" style="margin:0px 23px 0px 0px" />
                         <span asp-validation-for="@Model.Customer.IsActive" class="text-danger"></span>
                     </div>
                     <div class="col-1 form-group-row text-start">
-                        <label class="col-form-label" asp-for="@Model.Customer.IsActive"></label>
+                        <label class="col-form-label" style="padding: 8px 0px 0px 0px" asp-for="@Model.Customer.IsActive"></label>
                     </div>
                 </div>
                 <partial name="_EditAndBackToListPartialView" />
@@ -113,13 +113,13 @@
                         <span asp-validation-for="@Model.Customer.PhoneNumber" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="row">
+                <div class="col-2 row" style="padding:0px 0px 0px 13px">
                     <div class="col-1 form-group-row text-end" style="padding:10px 1px;">
-                        <input type="checkbox" asp-for="@Model.Customer.IsActive" />
+                        <input type="checkbox" asp-for="@Model.Customer.IsActive" style="margin:0px 23px 0px 0px"/>
                         <span asp-validation-for="@Model.Customer.IsActive" class="text-danger"></span>
                     </div>
                     <div class="col-1 form-group-row text-start">
-                        <label class="col-form-label" asp-for="@Model.Customer.IsActive"></label>
+                        <label class="col-form-label" style="padding: 8px 0px 0px 0px" asp-for="@Model.Customer.IsActive"></label>
                     </div>
                 </div>
                 <partial name="_CreateAndBackToListPartialView" />

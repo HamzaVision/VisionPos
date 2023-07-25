@@ -24,7 +24,9 @@ namespace VisionPos.Models
         [Required]
         public Boolean Active { get; set; }
 
+
         [Required]
+        [DisplayName("Date")]
         public DateTime CreationDate { get; set; }
 
     }

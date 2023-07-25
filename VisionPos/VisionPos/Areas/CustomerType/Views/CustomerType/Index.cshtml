@@ -85,7 +85,7 @@
                 var positionbackURL = '/CustomerType/CustomerType/GetcustomertypeDetails';
 
                 // Event handler for the Details button click
-                $('#btnViewDetails').on('click', function () {
+                $('.btnViewDetails').on('click', function () {
                     var id = $(this).data('id');
 
                     $('button[name="btnClose"]').on('click', function () {
@@ -113,32 +113,30 @@
 
             $(function () {
                 var positionbackURL = '/CustomerType/CustomerType/DeleteCustomerType';
-                $('#btnDelete').on('click', function () {
+
+                $('.btnDelete').on('click', function () {
                     var id = $(this).data('id');
                     $('#MyDeleteModal').modal('show');
-                });
-                $('button[name="btnClose"]').on('click', function () {
-                    $('#MyDeleteModal').modal('hide');
+
+                    $('#ConfirmBtn').off('click').on('click', function () {
+                        $('#MyDeleteModal').modal('hide');
+                        $.ajax({
+                            type: "POST",
+                            url: positionbackURL,
+                            data: { id: id },
+                            success: function () {
+                                alert("Deleted Successfully.");
+                                window.location.href = '/CustomerType/CustomerType/Index';
+                            },
+                            error: function () {
+                                alert("Dynamic content load failed.");
+                            }
+                        });
+                    });
                 });
 
-                // Attach click event to the ConfirmBtn outside the click event for anchorDetail
-                $('#ConfirmBtn').on('click', function () {
+                $('button[name="btnClose"]').on('click', function () {
                     $('#MyDeleteModal').modal('hide');
-                    var id = $('#btnDelete').data('id');
-                    $.ajax({
-                        type: "POST",
-                        url: positionbackURL,
-                        data: { id: id },
-                        success: function () {
-                            alert("Deleted Successfully.");
-                            window.location.href = '/CustomerType/CustomerType/Index';
-                            // Optionally, you can add code here to update the UI after successful deletion
-                            // For example, remove the deleted item from the list or refresh the list.
-                        },
-                        error: function () {
-                            alert("Dynamic content load failed.");
-                        }
-                    });
                 });
             });           
 

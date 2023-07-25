@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model tbItems
+<div class="row">
+    <div class="col-2 form-group-row">
+        <label class="col-form-label" asp-for="@Model.Name"></label>
+    </div>
+    <div class="col-10 form-group-row">
+        <input asp-for="@Model.Name" class="form-control" readonly value="@Model.Name" />
+        <span asp-validation-for="@Model.Name" class="text-danger"></span>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-2 form-group-row">
+        <label class="col-form-label" asp-for="@Model.SalesRate"></label>
+    </div>
+    <div class="col-10 form-group-row">
+        <input asp-for="@Model.SalesRate" class="form-control" readonly value="@Model.SalesRate" />
+        <span asp-validation-for="@Model.SalesRate" class="text-danger"></span>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-2 form-group-row">
+        <label class="col-form-label">Date</label>
+    </div>
+    <div class="col-10 form-group-row">
+        <input type="datetime" asp-for="@Model.CreationDate" class="form-control" readonly value="@Model.CreationDate.ToString("dd-MMM-yyyy")" />
+        <span asp-validation-for="@Model.CreationDate" class="text-danger"></span>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-2 form-group-row">
+        <label class="col-form-label" asp-for="@Model.Active"></label>
+    </div>
+    <div class="col-10 form-group-row">
+        <input type="checkbox" asp-for="@Model.Active" disabled/>
+        <span asp-validation-for="@Model.Active" class="text-danger"></span>
+    </div>
+</div>
