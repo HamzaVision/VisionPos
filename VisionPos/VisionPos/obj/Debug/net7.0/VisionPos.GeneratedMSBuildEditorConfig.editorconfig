@@ -216,6 +216,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/Hamza/VisionPos/VisionPos/VisionPos/Areas/Invoices/Views/Invoice/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW52b2ljZXNcVmlld3NcSW52b2ljZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hamza/VisionPos/VisionPos/VisionPos/Areas/Invoices/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW52b2ljZXNcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/Hamza/VisionPos/VisionPos/VisionPos/Areas/Invoices/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSW52b2ljZXNcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/Hamza/VisionPos/VisionPos/VisionPos/Areas/Items/Views/Item/CreateAndEdit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSXRlbXNcVmlld3NcSXRlbVxDcmVhdGVBbmRFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

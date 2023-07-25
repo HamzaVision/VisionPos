@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model VisionPos.Models.ViewModels.SalesInvoiceSalesItemsViewModel
+
+
+
+<div style="padding: 40px 0px 0px 40px ">
+    <div class="border whitebackgroundBorder" style="width:950px;height:auto">
+        <div class="row">
+            <div class="col-6 text-info"><h4><strong>Sales Invoice</strong></h4></div>
+            <div class="col-6 text-end"><partial name="_CreateButtonPartial" /></div>
+        </div>
+        <br>
+        @if (Model.SalesInvoice.Count() > 0 || Model.SalesInvoiceItems.Count() > 0)
+        {
+            <table class="table table-striped border">
+                <thead>
+                    <tr class="table-secondary">
+                        <th>@Html.DisplayNameFor(item => item.SalesInvoice[0].InvoiceDate)</th>
+                        <th>@Html.DisplayNameFor(item => item.SalesInvoice[0].CustomerId)</th>
+                        <th>@Html.DisplayNameFor(item => item.SalesInvoice[0].LineTotal)</th>
+                        <th>@Html.DisplayNameFor(item => item.SalesInvoice[0].Discount)</th>
+                        <th>@Html.DisplayNameFor(item => item.SalesInvoice[0].InvoiceTotal)</th>
+                        <th>@Html.DisplayNameFor(item => item.SalesInvoiceItems[0].ItemId)</th>
+                        <th colspan="2"></th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach(var invoice in Model.SalesInvoice)
+                    {
+                        <tr>
+                            <td class="text-bg-dark">@invoice.InvoiceDate.ToString("dd-MM-yyyy")</td>
+                            <td class="text-bg-dark">@invoice.Customer.Name</td>
+                            <td class="text-bg-dark">@invoice.LineTotal</td>
+                            <td class="text-bg-dark">@invoice.Discount</td>
+                            <td class="text-bg-dark">@invoice.InvoiceTotal</td>
+                            <td class="text-bg-dark">@Model.SalesInvoiceItems.Where(x=>x.SalesInvoiceId == invoice.Id).FirstOrDefault().TbItems.Name</td>
+                            <td><partial name="_EditAndViewPartialView" model="@invoice.Id" /></td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h3>There is no sale Invoice Present in the data base....</h3>
+        }
+    </div>
+</div>
