@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using VisionPos.Data;
 using VisionPos.Models;
 namespace VisionPos.Areas.CustomerType.Controllers
@@ -52,6 +53,19 @@ namespace VisionPos.Areas.CustomerType.Controllers
             return PartialView("_CustomerTypeDetailsPartialView", customer);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteCustomerType(int id)
+        {
+            var cus = await _db.CustomerTypes.FirstOrDefaultAsync(x => x.Id == id);
+            if (cus != null)
+            {
+                _db.CustomerTypes.Remove(cus);
+                await _db.SaveChangesAsync();
+                //return RedirectToAction("Index");
+                return Ok();
+            }
+            return NotFound(); // Handle the case where the customer type with the given ID is not found.
+        }
 
     }
 }

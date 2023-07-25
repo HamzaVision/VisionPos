@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9YipopXlIn3617zlsVCPHS2OWfbxgYRJbO+2oqjR+jA8DYdZ2YqZKlyOuDP8FkRnPcc7fL5GVk0mYzBlWrRipg==",
+  "dgSpecHash": "vv4Y21NAUGSZ/oOEc/WAvdJ/nBPl4y0ZA02fROYl8UA2Piy341WlNRN1r28ivOBcxZ3KNgtfdSCsFIOQA/f7zg==",
   "success": true,
   "projectFilePath": "E:\\Hamza\\VisionPos\\VisionPos\\VisionPos\\VisionPos.csproj",
   "expectedPackageFiles": [
@@ -61,6 +61,8 @@
     "C:\\Users\\Abdul Raheem\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\7.0.0\\microsoft.aspnetcore.diagnostics.entityframeworkcore.7.0.0.nupkg.sha512",
     "C:\\Users\\Abdul Raheem\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.9\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.9.nupkg.sha512",
     "C:\\Users\\Abdul Raheem\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\7.0.9\\microsoft.aspnetcore.identity.ui.7.0.9.nupkg.sha512",
+    "C:\\Users\\Abdul Raheem\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\6.0.0\\microsoft.aspnetcore.mvc.razor.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Abdul Raheem\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.runtimecompilation\\7.0.9\\microsoft.aspnetcore.mvc.razor.runtimecompilation.7.0.9.nupkg.sha512",
     "C:\\Users\\Abdul Raheem\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.11\\microsoft.aspnetcore.razor.language.6.0.11.nupkg.sha512",
     "C:\\Users\\Abdul Raheem\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\Abdul Raheem\\.nuget\\packages\\microsoft.build\\17.3.2\\microsoft.build.17.3.2.nupkg.sha512",

@@ -7,12 +7,13 @@
 <td style="width:150px">
     <div class="btn-group" role="group">
         <a class="btn btn-primary text-white" asp-action="Edit" asp-route-Id="@Model"><i class="fa-solid fa-pen-to-square"></i></a>
-        <button type="submit" class="btn btn-success anchorDetail" data-id="@Model">
+        <button type="submit" class="btn btn-success anchorDetail" id="btnViewDetails" data-id="@Model">
             <i class="fa-solid fa-search" data-toggle="modal"></i>
         </button>
-        <button type="submit" class="btn btn-danger anchorDetail" data-hamza="@Model">
+        <button type="button" class="btn btn-danger anchorDetail" id="btnDelete" data-id="@Model">
             <i class="fa-solid fa-trash" data-toggle="modal"></i>
         </button>
+
     </div>
 </td>
 

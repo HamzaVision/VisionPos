@@ -28,14 +28,15 @@ namespace VisionPos.Areas.Customer.Controllers
                 { Text = a.CustomerType, Value = a.Id.ToString() }).ToList(),
                 //CustomersNameList = _db.Customers.Select(a => new SelectListItem()
                 //{ Text = a.Name, Value = a.Id.ToString() }).ToList()
-
             };
-
+            mod.CustomersList.Insert(0, new SelectListItem
+            {
+                Text = "Please Select",
+                Value = "0"
+            });
             return View("CreateAndEdit", mod);
 
         }
-
-
 
         public IActionResult Edit(int id)
         {
@@ -49,6 +50,11 @@ namespace VisionPos.Areas.Customer.Controllers
                 //{ Text = a.Name, Value = a.Id.ToString() }).ToList()
 
             };
+            mod.CustomersList.Insert(0, new SelectListItem
+            {
+                Text = "Please Select",
+                Value = "0"
+            });
 
             return View("CreateAndEdit", mod);
         }
@@ -58,7 +64,7 @@ namespace VisionPos.Areas.Customer.Controllers
         public async Task<IActionResult> Create(CustomerCustomerTypeListViewModel obj)
         {
 
-            if (!_db.Customers.Any(x => x.Name == obj.Customer.Name))
+            if (!_db.Customers.Any(x => x.Name == obj.Customer.Name) && obj.Customer.CustomerType != 0)
             {
                 obj.Customer.CreationDate = DateTime.Now;
                 _db.Customers.Add(obj.Customer);
@@ -66,18 +72,44 @@ namespace VisionPos.Areas.Customer.Controllers
                 return RedirectToAction("Index");
 
             }
-            TempData["DangerMessage"] = "This Name is Already Exists in the Data Base.";
-            CustomerCustomerTypeListViewModel mod = new CustomerCustomerTypeListViewModel()
+            else if (obj.Customer.CustomerType == 0)
             {
-                Customer = new Models.Customer(),
-                CustomersList = _db.CustomerTypes.Select(a => new SelectListItem()
-                { Text = a.CustomerType, Value = a.Id.ToString() }).ToList(),
-                //CustomersNameList = _db.Customers.Select(a => new SelectListItem()
-                //{ Text = a.Name, Value = a.Id.ToString() }).ToList()
+                TempData["DangerMessage"] = "Plz select option first.....!!!";
+                CustomerCustomerTypeListViewModel mod = new CustomerCustomerTypeListViewModel()
+                {
+                    Customer = new Models.Customer(),
+                    CustomersList = _db.CustomerTypes.Select(a => new SelectListItem()
+                    { Text = a.CustomerType, Value = a.Id.ToString() }).ToList(),
+                    //CustomersNameList = _db.Customers.Select(a => new SelectListItem()
+                    //{ Text = a.Name, Value = a.Id.ToString() }).ToList()
 
-            };
-            return View("CreateAndEdit", mod);
+                };
+                mod.CustomersList.Insert(0, new SelectListItem
+                {
+                    Text = "Please Select",
+                    Value = "0"
+                });
+                return View("CreateAndEdit", mod);
+            }
+            else
+            {
+                TempData["DangerMessage"] = "This Name is Already Exists in the Data Base.";
+                CustomerCustomerTypeListViewModel mod = new CustomerCustomerTypeListViewModel()
+                {
+                    Customer = new Models.Customer(),
+                    CustomersList = _db.CustomerTypes.Select(a => new SelectListItem()
+                    { Text = a.CustomerType, Value = a.Id.ToString() }).ToList(),
+                    //CustomersNameList = _db.Customers.Select(a => new SelectListItem()
+                    //{ Text = a.Name, Value = a.Id.ToString() }).ToList()
 
+                };
+                mod.CustomersList.Insert(0, new SelectListItem
+                {
+                    Text = "Please Select",
+                    Value = "0"
+                });
+                return View("CreateAndEdit", mod);
+            }
         }
 
         [HttpPost]
@@ -128,5 +160,18 @@ namespace VisionPos.Areas.Customer.Controllers
             return PartialView("_CustomerDetailsPartialView", customer);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteCustomer(int id)
+        {
+            var cus = await _db.Customers.FirstOrDefaultAsync(x => x.Id == id);
+            if (cus != null)
+            {
+                _db.Customers.Remove(cus);
+                await _db.SaveChangesAsync();
+                //return RedirectToAction("Index");
+                return Ok();
+            }
+            return NotFound(); // Handle the case where the customer type with the given ID is not found.
+        }
     }
 }

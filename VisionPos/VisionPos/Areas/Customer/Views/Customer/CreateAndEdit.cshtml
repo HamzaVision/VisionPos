@@ -20,11 +20,16 @@
 }
 @if (TempData["DangerMessage"] != null)
 {
-    <div class="col-6 alert alert-warning alert-dismissible fade show" role="alert">
-        @TempData["DangerMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small class="text-muted">11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
     </div>
 }
 <form method="post" asp-action="@action">
@@ -47,7 +52,8 @@
                     </div>
                     <div class="col-4 form-group-row">
                         <label class="col-form-label" asp-for="@Model.Customer.CustomerType"></label>
-                        <select id="ddlCustomerTypeList" asp-for="@Model.Customer.CustomerType" asp-items="@Model.CustomersList" class="form-control"></select>
+                       
+                        <select id="ddlCustomerTypeList" asp-for="@Model.Customer.CustomerType" asp-items="@Model.CustomersList" class="form-select"></select>
                         @*<span asp-validation-for="@Model.Name" class="text-danger"></span>*@
                     </div>
                 </div>
@@ -78,6 +84,7 @@
             {
                 <h4 class="text-info">Create</h4>
                 <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="col-2 form-group-row">
                         <label class="col-form-label" asp-for="@Model.Customer.Id"></label>
                         <input asp-for="@Model.Customer.Id" readonly class="form-control" />
@@ -90,7 +97,7 @@
                     </div>
                     <div class="col-4 form-group-row">
                         <label class="col-form-label" asp-for="@Model.Customer.CustomerType"></label>
-                        <select id="ddlCustomerTypeList" asp-for="@Model.Customer.CustomerType" asp-items="@Model.CustomersList" class="form-control"></select>
+                        <select id="ddlCustomerTypeList" asp-for="@Model.Customer.CustomerType" asp-items="@Model.CustomersList" class="form-select"></select>
                         @*<span asp-validation-for="@Model.Name" class="text-danger"></span>*@
                     </div>
                 </div>

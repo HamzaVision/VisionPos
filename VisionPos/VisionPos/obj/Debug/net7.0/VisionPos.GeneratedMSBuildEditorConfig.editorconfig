@@ -12,7 +12,7 @@ build_property.RootNamespace = VisionPos
 build_property.ProjectDir = E:\Hamza\VisionPos\VisionPos\VisionPos\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
 build_property.MSBuildProjectDirectory = E:\Hamza\VisionPos\VisionPos\VisionPos
 build_property._RazorSourceGeneratorDebug = 
 
