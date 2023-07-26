@@ -3,6 +3,13 @@
     ViewData["Title"] = "Index";
 }
 
+<style>
+    body {
+        overflow-y: scroll;
+    }
+</style>
+
+
 @model VisionPos.Models.ViewModels.SalesInvoiceSalesItemsViewModel
 
 
@@ -34,7 +41,7 @@
 }
 <form method="post" asp-action="@action">
     <div style="padding: 40px 0px 0px 40px ">
-        <div class="border whitebackgroundBorder" style="width:950px;height:auto">
+        <div class="whitebackgroundBorder" style="width:950px;">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @if (action == "Edit")
             {
@@ -149,8 +156,12 @@
                         <partial name="_CreateAndBackToListPartialView" />
                     </div>
                     <div class="col-4 form-group-row" style="padding:23px 0px 0px 350px">
-                        <button type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
+                        <button type="button" class="btn btn-success" id="Btn_AddInvoiceItem"><i class="fa-solid fa-plus"></i></button>
                     </div>
+                </div>
+                <br />
+                <div class="border SaleInvoiceItem" style="margin:-5px -1px 1px -1px;padding:0px 5px 12px 2px">
+                    <partial name="_SalesInvoiceItemPartialView" />
                 </div>
 
             }
@@ -165,14 +176,51 @@
 
 @section scripts
 {
-    @*<script>
-            $(document).ready(function () {
-                var dateNewFormat = new Date();
-                $('#CInvoiceDateId').val(dateNewFormat.toString("dd-MMM-yyyy"));
-            });
-        </script>*@
 
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        $(document).on('click', '#Btn_AddInvoiceItem', function (e) {
+            $.ajax({
+                url: '/Invoices/Invoice/DisplayNewInvoiceItem',
+                success: function (partialView) {
+                    $('.SaleInvoiceItem').append(partialView);
+                }
+            });
+        });
+        $(document).on('click', '#Btn_DeleteInvoiceItem', function (e) {
+            $(this).parent().parent().remove();
+        });
+
+        
+        $(document).ready(function () {
+            $('#PItemsList').on('change', function (e) {
+                var valueSelected = $(this).val();
+                /*$('#SIRate').val(valueSelected);*/
+                $.ajax({
+                    type: "GET",
+                    url: '/Invoices/Invoice/DisplayRate',
+                    contentType: "application/json; charset=utf-8",
+                    data: { id: valueSelected },
+                    cache: false,
+                    dataType: "json",
+                    success: function (result) {
+                        $('#SIRate').val(result);
+                    }
+                });
+            });
+        });
+
+        //function ComparingFunction(value) {
+        //    $.each(Model.tbItemsList, function (index, item) {
+        //        if (item.Id == value) {
+        //            $('#SIRate').val(item.SalesRate);
+        //        }
+        //    });
+        //}
+
+    </script>
+
+
 }

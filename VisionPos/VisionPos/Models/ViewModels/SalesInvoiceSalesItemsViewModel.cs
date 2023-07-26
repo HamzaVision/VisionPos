@@ -11,5 +11,7 @@ namespace VisionPos.Models.ViewModels
         public tbSalesInvoiceItems SaleInvoiceItems { get; set; }
 
         public List<SelectListItem> CustomerList { get; set; }
+        public List<SelectListItem> ItemsList { get; set; }
+        public List<tbItems> tbItemsList { get; set; }
     }
 }

@@ -20,11 +20,18 @@ namespace VisionPos.Areas.Invoices.Controllers
             {
                 SalesInvoice = _db.tbSalesInvoice.Include(x => x.Customer).ToList(),
                 SalesInvoiceItems = _db.tbSalesInvoiceItems.Include(x => x.TbSalesInvoice).Include(x => x.TbItems).ToList(),
+                tbItemsList = _db.tbItems.ToList(),
                 SaleInvoice = new Models.tbSalesInvoice(),
                 SaleInvoiceItems = new Models.tbSalesInvoiceItems(),
-                CustomerList = _db.Customers.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList()
+                CustomerList = _db.Customers.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList(),
+                ItemsList = _db.tbItems.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList()
             };
             mod.CustomerList.Insert(0, new SelectListItem
+            {
+                Text = "Please Select",
+                Value = "0"
+            });
+            mod.ItemsList.Insert(0, new SelectListItem
             {
                 Text = "Please Select",
                 Value = "0"
@@ -37,11 +44,18 @@ namespace VisionPos.Areas.Invoices.Controllers
             {
                 SalesInvoice = _db.tbSalesInvoice.Include(x => x.Customer).ToList(),
                 SalesInvoiceItems = _db.tbSalesInvoiceItems.Include(x => x.TbSalesInvoice).Include(x => x.TbItems).ToList(),
+                tbItemsList = _db.tbItems.ToList(),
                 SaleInvoice = new Models.tbSalesInvoice(),
                 SaleInvoiceItems = new Models.tbSalesInvoiceItems(),
-                CustomerList = _db.Customers.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList()
+                CustomerList = _db.Customers.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList(),
+                ItemsList = _db.tbItems.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList()
             };
             mod.CustomerList.Insert(0, new SelectListItem
+            {
+                Text = "Please Select",
+                Value = "0"
+            });
+            mod.ItemsList.Insert(0, new SelectListItem
             {
                 Text = "Please Select",
                 Value = "0"
@@ -54,5 +68,37 @@ namespace VisionPos.Areas.Invoices.Controllers
             var cus = _db.CustomerTypes.FirstOrDefault(x => x.Id == id);
             return View("CreateAndEdit", cus);
         }
+
+        public IActionResult DisplayNewInvoiceItem()
+        {
+            SalesInvoiceSalesItemsViewModel mod = new SalesInvoiceSalesItemsViewModel()
+            {
+                SalesInvoice = _db.tbSalesInvoice.Include(x => x.Customer).ToList(),
+                SalesInvoiceItems = _db.tbSalesInvoiceItems.Include(x => x.TbSalesInvoice).Include(x => x.TbItems).ToList(),
+                tbItemsList = _db.tbItems.ToList(),
+                SaleInvoice = new Models.tbSalesInvoice(),
+                SaleInvoiceItems = new Models.tbSalesInvoiceItems(),
+                CustomerList = _db.Customers.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList(),
+                ItemsList = _db.tbItems.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList()
+            };
+            mod.CustomerList.Insert(0, new SelectListItem
+            {
+                Text = "Please Select",
+                Value = "0"
+            });
+            mod.ItemsList.Insert(0, new SelectListItem
+            {
+                Text = "Please Select",
+                Value = "0"
+            });
+            return PartialView("_SalesInvoiceItemPartialView", mod);
+        }
+        [HttpGet]
+        public IActionResult DisplayRate(int id)
+        {
+            decimal cus = _db.tbItems.FirstOrDefault(x => x.Id == id).SalesRate;
+            return Json(new { result = cus });
+        }
+
     }
 }
