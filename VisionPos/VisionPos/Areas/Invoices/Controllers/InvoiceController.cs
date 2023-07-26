@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using VisionPos.Data;
 using VisionPos.Models.ViewModels;
@@ -18,10 +19,16 @@ namespace VisionPos.Areas.Invoices.Controllers
             SalesInvoiceSalesItemsViewModel mod = new SalesInvoiceSalesItemsViewModel()
             {
                 SalesInvoice = _db.tbSalesInvoice.Include(x => x.Customer).ToList(),
-                SalesInvoiceItems = _db.tbSalesInvoiceItems.Include(x => x.TbSalesInvoice).Include(x => x.TbItems).ToList()
+                SalesInvoiceItems = _db.tbSalesInvoiceItems.Include(x => x.TbSalesInvoice).Include(x => x.TbItems).ToList(),
+                SaleInvoice = new Models.tbSalesInvoice(),
+                SaleInvoiceItems = new Models.tbSalesInvoiceItems(),
+                CustomerList = _db.Customers.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList()
             };
-
-
+            mod.CustomerList.Insert(0, new SelectListItem
+            {
+                Text = "Please Select",
+                Value = "0"
+            });
             return View(mod);
         }
         public IActionResult Create()
@@ -29,8 +36,16 @@ namespace VisionPos.Areas.Invoices.Controllers
             SalesInvoiceSalesItemsViewModel mod = new SalesInvoiceSalesItemsViewModel()
             {
                 SalesInvoice = _db.tbSalesInvoice.Include(x => x.Customer).ToList(),
-                SalesInvoiceItems = _db.tbSalesInvoiceItems.Include(x => x.TbSalesInvoice).Include(x => x.TbItems).ToList()
+                SalesInvoiceItems = _db.tbSalesInvoiceItems.Include(x => x.TbSalesInvoice).Include(x => x.TbItems).ToList(),
+                SaleInvoice = new Models.tbSalesInvoice(),
+                SaleInvoiceItems = new Models.tbSalesInvoiceItems(),
+                CustomerList = _db.Customers.Select(x => new SelectListItem() { Value = x.Id.ToString(), Text = x.Name }).ToList()
             };
+            mod.CustomerList.Insert(0, new SelectListItem
+            {
+                Text = "Please Select",
+                Value = "0"
+            });
             return View("CreateAndEdit", mod);
         }
 

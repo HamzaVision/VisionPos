@@ -38,7 +38,12 @@
                             <td class="text-bg-dark">@invoice.LineTotal</td>
                             <td class="text-bg-dark">@invoice.Discount</td>
                             <td class="text-bg-dark">@invoice.InvoiceTotal</td>
-                            <td class="text-bg-dark">@Model.SalesInvoiceItems.Where(x=>x.SalesInvoiceId == invoice.Id).FirstOrDefault().TbItems.Name</td>
+                            <td class="text-bg-dark">
+                                @foreach(var items in  Model.SalesInvoiceItems.Where(x=>x.SalesInvoiceId == invoice.Id).ToList())
+                                 {
+                                    <span>@items.TbItems.Name</span><br/>  
+                                 }
+                            </td>
                             <td><partial name="_EditAndViewPartialView" model="@invoice.Id" /></td>
                         </tr>
                     }

@@ -1,8 +1,178 @@
 ﻿
 @{
-    ViewData["Title"] = "CreateAndEdit";
-
+    ViewData["Title"] = "Index";
 }
 
-<h1>CreateAndEdit</h1>
+@model VisionPos.Models.ViewModels.SalesInvoiceSalesItemsViewModel
 
+
+@{
+    var action = "";
+    if (Model.SaleInvoice.Id == 0 || Model.SaleInvoiceItems.Id == 0)
+    {
+        action = "Create";
+    }
+    else
+    {
+        action = "Edit";
+    }
+
+}
+@if (TempData["DangerMessage"] != null)
+{
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img src="..." class="rounded me-2" alt="...">
+            <strong class="me-auto">Bootstrap</strong>
+            <small class="text-muted">11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Hello, world! This is a toast message.
+        </div>
+    </div>
+}
+<form method="post" asp-action="@action">
+    <div style="padding: 40px 0px 0px 40px ">
+        <div class="border whitebackgroundBorder" style="width:950px;height:auto">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (action == "Edit")
+            {
+                <h4 class="text-info">Edit</h4>
+                <div class="row">
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Id"></label>
+                        <input asp-for="@Model.SaleInvoice.Id" readonly class="form-control" value="@Model.SaleInvoice.Id" />
+                        @*<span asp-validation-for="@Model.Id" class="text-danger"></span>*@
+                    </div>
+                    <div class="col-6 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.InvoiceDate"></label>
+                        <input asp-for="@Model.SaleInvoice.InvoiceDate" id="InvoiceDateId" class="form-control" value="@Model.SaleInvoice.InvoiceDate" />
+                        <span asp-validation-for="@Model.SaleInvoice.InvoiceDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-4 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.CustomerId"></label>
+
+                        <select id="ddlCustomerTypeList" asp-for="@Model.SaleInvoice.CustomerId" asp-items="@Model.CustomerList" class="form-select"></select>
+                        <span asp-validation-for="@Model.SaleInvoice.CustomerId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Description"></label>
+                        <input asp-for="@Model.SaleInvoice.Description" class="form-control" value="@Model.SaleInvoice.Description" />
+                        <span asp-validation-for="@Model.SaleInvoice.Description" class="text-danger"></span>
+                    </div>
+                    <div class="col-4 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.LineTotal"></label>
+                        <input asp-for="@Model.SaleInvoice.LineTotal" class="form-control" value="@Model.SaleInvoice.LineTotal" />
+                        <span asp-validation-for="@Model.SaleInvoice.LineTotal" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Discount"></label>
+                        <input asp-for="@Model.SaleInvoice.Discount" class="form-control" value="@Model.SaleInvoice.Discount" />
+                        <span asp-validation-for="@Model.SaleInvoice.Discount" class="text-danger"></span>
+                    </div>
+                    <div class="col-4 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.InvoiceTotal"></label>
+                        <input asp-for="@Model.SaleInvoice.InvoiceTotal" class="form-control" value="@Model.SaleInvoice.InvoiceTotal" />
+                        <span asp-validation-for="@Model.SaleInvoice.InvoiceTotal" class="text-danger"></span>
+                    </div>
+                </div>
+                @*<div class="col-2 row" style="padding:0px 0px 0px 13px">
+                        <div class="col-1 form-group-row text-end" style="padding:10px 1px;">
+                            <input type="checkbox" asp-for="@Model.Customer.IsActive" style="margin:0px 23px 0px 0px" />
+                            <span asp-validation-for="@Model.Customer.IsActive" class="text-danger"></span>
+                        </div>
+                        <div class="col-1 form-group-row text-start">
+                            <label class="col-form-label" style="padding: 8px 0px 0px 0px" asp-for="@Model.Customer.IsActive"></label>
+                        </div>
+                    </div>*@
+                <partial name="_EditAndBackToListPartialView" />
+            }
+            else
+            {
+                <h4 class="text-info">Create</h4>
+                <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Id"></label>
+                        <input asp-for="@Model.SaleInvoice.Id" readonly class="form-control" />
+                        @*<span asp-validation-for="@Model.Id" class="text-danger"></span>*@
+                    </div>
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.InvoiceDate"></label>
+                        <input type="datetime" asp-for="@Model.SaleInvoice.InvoiceDate" id="CInvoiceDateId" readonly class="form-control" value="@System.DateTime.Now.ToString("dd-MMM-yyyy")" />
+                        <span asp-validation-for="@Model.SaleInvoice.InvoiceDate" class="text-danger"></span>
+                    </div>
+                    <div class="col-3 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.LineTotal"></label>
+                        <input asp-for="@Model.SaleInvoice.LineTotal" readonly class="form-control" />
+                        <span asp-validation-for="@Model.SaleInvoice.LineTotal" class="text-danger"></span>
+                    </div>
+                    <div class="col-2 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Discount"></label>
+                        <input asp-for="@Model.SaleInvoice.Discount" class="form-control" />
+                        <span asp-validation-for="@Model.SaleInvoice.Discount" class="text-danger"></span>
+                    </div>
+                    <div class="col-3 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.InvoiceTotal"></label>
+                        <input asp-for="@Model.SaleInvoice.InvoiceTotal" readonly class="form-control" />
+                        <span asp-validation-for="@Model.SaleInvoice.InvoiceTotal" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.CustomerId"></label>
+                        <select id="ddlCustomerList" asp-for="@Model.SaleInvoice.CustomerId" asp-items="@Model.CustomerList" class="form-select"></select>
+                        <span asp-validation-for="@Model.SaleInvoice.CustomerId" class="text-danger"></span>
+                    </div>
+                    <div class="col-9 form-group-row">
+                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Description"></label>
+                        <input asp-for="@Model.SaleInvoice.Description" class="form-control" />
+                        <span asp-validation-for="@Model.SaleInvoice.Description" class="text-danger"></span>
+                    </div>
+                </div>
+                @*<div class="col-2 row" style="padding:0px 0px 0px 13px">
+                        <div class="col-1 form-group-row text-end" style="padding:10px 1px;">
+                            <input type="checkbox" asp-for="@Model.Customer.IsActive" style="margin:0px 23px 0px 0px" />
+                            <span asp-validation-for="@Model.Customer.IsActive" class="text-danger"></span>
+                        </div>
+                        <div class="col-1 form-group-row text-start">
+                            <label class="col-form-label" style="padding: 8px 0px 0px 0px" asp-for="@Model.Customer.IsActive"></label>
+                        </div>
+                    </div>*@
+                <div class="row">
+                    <div class="col-8 form-group-row" style="margin:0px 0px 0px -98px">
+                        <partial name="_CreateAndBackToListPartialView" />
+                    </div>
+                    <div class="col-4 form-group-row" style="padding:23px 0px 0px 350px">
+                        <button type="button" class="btn btn-success"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+
+            }
+
+        </div>
+
+
+    </div>
+</form>
+
+
+
+@section scripts
+{
+    @*<script>
+            $(document).ready(function () {
+                var dateNewFormat = new Date();
+                $('#CInvoiceDateId').val(dateNewFormat.toString("dd-MMM-yyyy"));
+            });
+        </script>*@
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
