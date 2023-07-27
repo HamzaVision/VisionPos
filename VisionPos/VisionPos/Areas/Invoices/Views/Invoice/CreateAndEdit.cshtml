@@ -198,12 +198,17 @@
         });
 
         
-        $(document).ready(function () {
-            // Attach event handler to a higher-level static parent (e.g., the document)
-            $(document).on('change', '.PItemsList_', function (e) {
+        //$(document).ready(function () {
+        //    // Attach event handler to a higher-level static parent (e.g., the document)
+            
+        //});
+
+
+        function getrate(count) {
+            $(document).on('change', '.PItemsList_' + count, function (e) {
                 var valueSelected = $(this).val();
-                var $row = $(this).closest('.row_');
-                debugger
+                var $row = $(this).closest('.row_' + count);
+                /*debugger*/
                 var $rate = $row.find('.SIRate');
                 /*$('#SIRate').val(valueSelected);*/
                 $.ajax({
@@ -224,12 +229,11 @@
                             alert("Plz Select option first");
                             $('.SIRate').val(null);
                         }
-                        
+
                     }
                 });
             });
-        });
-
+        }
 
         
         //        var valueSelected = $(this).val();

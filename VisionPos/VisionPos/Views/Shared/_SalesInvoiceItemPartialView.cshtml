@@ -9,7 +9,7 @@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="col-3 form-group-row">
         <label class="col-form-label" asp-for="@Model.SaleInvoiceItems.ItemId"></label>
-        <select asp-for="@Model.SaleInvoiceItems.ItemId" asp-items="@Model.ItemsList" class="form-select PItemsList_@Model.myCount"></select>
+        <select asp-for="@Model.SaleInvoiceItems.ItemId" onchange="getrate(@Model.myCount)" asp-items="@Model.ItemsList" class="form-select PItemsList_@Model.myCount" id="PItemsList"></select>
         <span asp-validation-for="@Model.SaleInvoiceItems.ItemId" class="text-danger"></span>
     </div>
     <div class="col-2 form-group-row">
