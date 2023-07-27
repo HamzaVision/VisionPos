@@ -12,6 +12,6 @@ namespace VisionPos.Models.ViewModels
 
         public List<SelectListItem> CustomerList { get; set; }
         public List<SelectListItem> ItemsList { get; set; }
-        public List<tbItems> tbItemsList { get; set; }
+        public int myCount { get; set; }
     }
 }

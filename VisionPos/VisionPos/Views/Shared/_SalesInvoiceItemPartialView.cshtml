@@ -3,21 +3,23 @@
 *@
 @model VisionPos.Models.ViewModels.SalesInvoiceSalesItemsViewModel
 
-<div class="row" id="RowId">
+
+
+<div class="row row_@Model.myCount">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="col-3 form-group-row">
         <label class="col-form-label" asp-for="@Model.SaleInvoiceItems.ItemId"></label>
-        <select id="PItemsList" asp-for="@Model.SaleInvoiceItems.ItemId" asp-items="@Model.ItemsList" class="form-select"></select>
+        <select asp-for="@Model.SaleInvoiceItems.ItemId" asp-items="@Model.ItemsList" class="form-select PItemsList_@Model.myCount"></select>
         <span asp-validation-for="@Model.SaleInvoiceItems.ItemId" class="text-danger"></span>
     </div>
     <div class="col-2 form-group-row">
         <label class="col-form-label" asp-for="@Model.SaleInvoiceItems.Quantity"></label>
-        <input type="datetime" asp-for="@Model.SaleInvoiceItems.Quantity" id="SIQuantity"  class="form-control"/>
+        <input type="datetime" asp-for="@Model.SaleInvoiceItems.Quantity" id="SIQuantity" class="form-control" />
         <span asp-validation-for="@Model.SaleInvoiceItems.Quantity" class="text-danger"></span>
     </div>
     <div class="col-2 form-group-row">
         <label class="col-form-label" asp-for="@Model.SaleInvoiceItems.Rate"></label>
-        <input asp-for="@Model.SaleInvoiceItems.Rate" readonly class="form-control" id="SIRate"/>
+        <input asp-for="@Model.SaleInvoiceItems.Rate" readonly class="form-control SIRate" />
         <span asp-validation-for="@Model.SaleInvoiceItems.Rate" class="text-danger"></span>
     </div>
     <div class="col-2 form-group-row">
@@ -34,14 +36,20 @@
     </div>
 </div>
 @*<div class="row">
-    <div class="col-3 form-group-row">
-        <label class="col-form-label" asp-for="@Model.SaleInvoice.CustomerId"></label>
-        <select id="ddlCustomerList" asp-for="@Model.SaleInvoice.CustomerId" asp-items="@Model.CustomerList" class="form-select"></select>
-        <span asp-validation-for="@Model.SaleInvoice.CustomerId" class="text-danger"></span>
-    </div>
-    <div class="col-9 form-group-row">
-        <label class="col-form-label" asp-for="@Model.SaleInvoice.Description"></label>
-        <input asp-for="@Model.SaleInvoice.Description" class="form-control" />
-        <span asp-validation-for="@Model.SaleInvoice.Description" class="text-danger"></span>
-    </div>
-</div>*@
+        <div class="col-3 form-group-row">
+            <label class="col-form-label" asp-for="@Model.SaleInvoice.CustomerId"></label>
+            <select id="ddlCustomerList" asp-for="@Model.SaleInvoice.CustomerId" asp-items="@Model.CustomerList" class="form-select"></select>
+            <span asp-validation-for="@Model.SaleInvoice.CustomerId" class="text-danger"></span>
+        </div>
+        <div class="col-9 form-group-row">
+            <label class="col-form-label" asp-for="@Model.SaleInvoice.Description"></label>
+            <input asp-for="@Model.SaleInvoice.Description" class="form-control" />
+            <span asp-validation-for="@Model.SaleInvoice.Description" class="text-danger"></span>
+        </div>
+    </div>*@
+@*@section scripts
+{
+    <script>
+        @count = @Model.Count
+    </script>
+}*@

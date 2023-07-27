@@ -161,6 +161,7 @@
                 </div>
                 <br />
                 <div class="border SaleInvoiceItem" style="margin:-5px -1px 1px -1px;padding:0px 5px 12px 2px">
+                    @*ViewBag.RowCounter = 0;*@
                     <partial name="_SalesInvoiceItemPartialView" />
                 </div>
 
@@ -181,11 +182,14 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     <script>
+        var count = 2;
         $(document).on('click', '#Btn_AddInvoiceItem', function (e) {
             $.ajax({
                 url: '/Invoices/Invoice/DisplayNewInvoiceItem',
+                data: { id: count },
                 success: function (partialView) {
                     $('.SaleInvoiceItem').append(partialView);
+                    count = count + 1;
                 }
             });
         });
@@ -195,8 +199,12 @@
 
         
         $(document).ready(function () {
-            $('#PItemsList').on('change', function (e) {
+            // Attach event handler to a higher-level static parent (e.g., the document)
+            $(document).on('change', '.PItemsList_', function (e) {
                 var valueSelected = $(this).val();
+                var $row = $(this).closest('.row_');
+                debugger
+                var $rate = $row.find('.SIRate');
                 /*$('#SIRate').val(valueSelected);*/
                 $.ajax({
                     type: "GET",
@@ -206,11 +214,72 @@
                     cache: false,
                     dataType: "json",
                     success: function (result) {
-                        $('#SIRate').val(result);
+                        if (result != null) {
+                            $rate.val(result);
+                            /*$row.find('.SIRate').val(result);*/
+                            /*$('#SIRate').val(result);*/
+                        }
+                        else {
+
+                            alert("Plz Select option first");
+                            $('.SIRate').val(null);
+                        }
+                        
                     }
                 });
             });
         });
+
+
+        
+        //        var valueSelected = $(this).val();
+        //        var $row = $(this).closest('.row');
+        //        var $rate = $row.find('.SIRate');
+        //        // Rest of your code...
+        //    });
+        //});
+
+        //$(document).ready(function () {
+        //    // Attach event handler to the parent element '.row' and delegate to '.PItemsList'
+        //    $('.row').on('change', '.PItemsList', function (e) {
+        //        var valueSelected = $(this).val();
+        //        var $row = $(this).closest('.row');
+        //        var $rate = $row.find('.SIRate');
+
+        //        $.ajax({
+        //            type: "GET",
+        //            url: '/Invoices/Invoice/DisplayRate',
+        //            contentType: "application/json; charset=utf-8",
+        //            data: { id: valueSelected },
+        //            cache: false,
+        //            dataType: "json",
+        //            success: function (result) {
+        //                if (result != null) {
+        //                    $rate.val(result);
+        //                    /*calculateTotalForRow($row); */// Calculate total for the row
+        //                } else {
+        //                    alert("Please select an option first.");
+        //                    $rate.val(null);
+        //                }
+        //            }
+        //        });
+        //    });
+        //});
+
+
+        // Function to calculate total for a specific row
+        //function calculateTotalForRow($row) {
+        //    var quantity = parseFloat($row.find('#SIQuantity').val());
+        //    var rate = parseFloat($row.find('.SIRate').val());
+        //    var total = quantity * rate;
+        //    if (!isNaN(total)) {
+        //        $row.find('#SaleItemTotal').val(total.toFixed(2)); // Set the total value in the respective cell
+        //    } else {
+        //        $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+        //    }
+        //}
+
+
 
         //function ComparingFunction(value) {
         //    $.each(Model.tbItemsList, function (index, item) {
