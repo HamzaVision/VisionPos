@@ -197,10 +197,10 @@
             $(this).parent().parent().remove();
         });
 
-        
+
         //$(document).ready(function () {
         //    // Attach event handler to a higher-level static parent (e.g., the document)
-            
+
         //});
 
 
@@ -209,7 +209,7 @@
                 var valueSelected = $(this).val();
                 var $row = $(this).closest('.row_' + count);
                 /*debugger*/
-                var $rate = $row.find('.SIRate');
+                var $rate = $row.find('.SIRate_' + count);
                 /*$('#SIRate').val(valueSelected);*/
                 $.ajax({
                     type: "GET",
@@ -227,7 +227,7 @@
                         else {
 
                             alert("Plz Select option first");
-                            $('.SIRate').val(null);
+                            $('.SIRate_' + count).val(null);
                         }
 
                     }
@@ -235,63 +235,92 @@
             });
         }
 
-        
-        //        var valueSelected = $(this).val();
-        //        var $row = $(this).closest('.row');
-        //        var $rate = $row.find('.SIRate');
-        //        // Rest of your code...
-        //    });
-        //});
-
-        //$(document).ready(function () {
-        //    // Attach event handler to the parent element '.row' and delegate to '.PItemsList'
-        //    $('.row').on('change', '.PItemsList', function (e) {
-        //        var valueSelected = $(this).val();
-        //        var $row = $(this).closest('.row');
-        //        var $rate = $row.find('.SIRate');
-
-        //        $.ajax({
-        //            type: "GET",
-        //            url: '/Invoices/Invoice/DisplayRate',
-        //            contentType: "application/json; charset=utf-8",
-        //            data: { id: valueSelected },
-        //            cache: false,
-        //            dataType: "json",
-        //            success: function (result) {
-        //                if (result != null) {
-        //                    $rate.val(result);
-        //                    /*calculateTotalForRow($row); */// Calculate total for the row
-        //                } else {
-        //                    alert("Please select an option first.");
-        //                    $rate.val(null);
-        //                }
-        //            }
-        //        });
-        //    });
-        //});
-
+        // Function to calculate total for a specific row
+        function calculateTotalForRow(count) {
+            $(document).on('change', '.SIQuantity_' + count, function (e) {
+                /*debugger*/
+                var $row = $(this).closest('.row_' + count);
+                var quantity = parseFloat($row.find('.SIQuantity_' + count).val());
+                var rate = parseFloat($row.find('.SIRate_' + count).val());
+                var total = quantity * rate;
+                if (!isNaN(total)) {
+                    $row.find('#SaleItemTotal').val(total.toFixed(2)); // Set the total value in the respective cell
+                } else {
+                    $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+                }
+            });
+        }
 
         // Function to calculate total for a specific row
-        //function calculateTotalForRow($row) {
-        //    var quantity = parseFloat($row.find('#SIQuantity').val());
-        //    var rate = parseFloat($row.find('.SIRate').val());
-        //    var total = quantity * rate;
-        //    if (!isNaN(total)) {
-        //        $row.find('#SaleItemTotal').val(total.toFixed(2)); // Set the total value in the respective cell
-        //    } else {
-        //        $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
-        //    }
-        //}
+        function calculateTotalAfterDiscount(count) {
+            $(document).on('change', '.SIDiscount_' + count, function (e) {
+                /*debugger*/
+                var $row = $(this).closest('.row_' + count);
+                var Discount = parseFloat($row.find('.SIDiscount_' + count).val());
+                var total = parseFloat($row.find('#SaleItemTotal').val());
+                var Total = total - Discount;
+                if (!isNaN(Total)) {
+                    $row.find('#SaleItemTotal').val(Total.toFixed(2)); // Set the total value in the respective cell
+                } else {
+                    $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+                }
+            });
+        }    //        var valueSelected = $(this).val();
+            //        var $row = $(this).closest('.row');
+            //        var $rate = $row.find('.SIRate');
+            //        // Rest of your code...
+            //    });
+            //});
+
+            //$(document).ready(function () {
+            //    // Attach event handler to the parent element '.row' and delegate to '.PItemsList'
+            //    $('.row').on('change', '.PItemsList', function (e) {
+            //        var valueSelected = $(this).val();
+            //        var $row = $(this).closest('.row');
+            //        var $rate = $row.find('.SIRate');
+
+            //        $.ajax({
+            //            type: "GET",
+            //            url: '/Invoices/Invoice/DisplayRate',
+            //            contentType: "application/json; charset=utf-8",
+            //            data: { id: valueSelected },
+            //            cache: false,
+            //            dataType: "json",
+            //            success: function (result) {
+            //                if (result != null) {
+            //                    $rate.val(result);
+            //                    /*calculateTotalForRow($row); */// Calculate total for the row
+            //                } else {
+            //                    alert("Please select an option first.");
+            //                    $rate.val(null);
+            //                }
+            //            }
+            //        });
+            //    });
+            //});
+
+
+            // Function to calculate total for a specific row
+            //function calculateTotalForRow($row) {
+            //    var quantity = parseFloat($row.find('#SIQuantity').val());
+            //    var rate = parseFloat($row.find('.SIRate').val());
+            //    var total = quantity * rate;
+            //    if (!isNaN(total)) {
+            //        $row.find('#SaleItemTotal').val(total.toFixed(2)); // Set the total value in the respective cell
+            //    } else {
+            //        $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+            //    }
+            //}
 
 
 
-        //function ComparingFunction(value) {
-        //    $.each(Model.tbItemsList, function (index, item) {
-        //        if (item.Id == value) {
-        //            $('#SIRate').val(item.SalesRate);
-        //        }
-        //    });
-        //}
+            //function ComparingFunction(value) {
+            //    $.each(Model.tbItemsList, function (index, item) {
+            //        if (item.Id == value) {
+            //            $('#SIRate').val(item.SalesRate);
+            //        }
+            //    });
+            //}
 
     </script>
 
