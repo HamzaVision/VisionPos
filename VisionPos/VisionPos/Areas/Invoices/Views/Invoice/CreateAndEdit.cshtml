@@ -102,46 +102,52 @@
             else
             {
                 <h4 class="text-info">Create</h4>
-                <div class="row">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="col-2 form-group-row">
-                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Id"></label>
-                        <input asp-for="@Model.SaleInvoice.Id" readonly class="form-control" />
-                        @*<span asp-validation-for="@Model.Id" class="text-danger"></span>*@
+                <div class="row d-flex justify-content-between">
+                    <div class="col-lg-8 form-group-row">
+                        <div class="row">
+                            <div class="col-2 form-group-row">
+                                <label class="col-form-label" asp-for="@Model.SaleInvoice.Id"></label>
+                                <input asp-for="@Model.SaleInvoice.Id" readonly class="form-control" />
+                                @*<span asp-validation-for="@Model.Id" class="text-danger"></span>*@
+                            </div>
+                            <div class="col-3 form-group-row">
+                                <label class="col-form-label" asp-for="@Model.SaleInvoice.InvoiceDate"></label>
+                                <input type="datetime" asp-for="@Model.SaleInvoice.InvoiceDate" id="CInvoiceDateId" readonly class="form-control" value="@System.DateTime.Now.ToString("dd-MMM-yyyy")" />
+                                <span asp-validation-for="@Model.SaleInvoice.InvoiceDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-4 form-group-row">
+                                <label class="col-form-label" asp-for="@Model.SaleInvoice.CustomerId"></label>
+                                <select id="ddlCustomerList" asp-for="@Model.SaleInvoice.CustomerId" asp-items="@Model.CustomerList" class="form-select"></select>
+                                <span asp-validation-for="@Model.SaleInvoice.CustomerId" class="text-danger"></span>
+                            </div>
+                            <div class="col-9 form-group-row">
+                                <label class="col-form-label" asp-for="@Model.SaleInvoice.Description"></label>
+                                <input asp-for="@Model.SaleInvoice.Description" class="form-control" />
+                                <span asp-validation-for="@Model.SaleInvoice.Description" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
                     </div>
-                    <div class="col-2 form-group-row">
-                        <label class="col-form-label" asp-for="@Model.SaleInvoice.InvoiceDate"></label>
-                        <input type="datetime" asp-for="@Model.SaleInvoice.InvoiceDate" id="CInvoiceDateId" readonly class="form-control" value="@System.DateTime.Now.ToString("dd-MMM-yyyy")" />
-                        <span asp-validation-for="@Model.SaleInvoice.InvoiceDate" class="text-danger"></span>
+                    <div class="col-lg-4 form-group-row">
+                        <div class="row">
+                            <div class="col-5 form-group-row">
+                                <label class="col-form-label" asp-for="@Model.SaleInvoice.LineTotal"></label>
+                                <input asp-for="@Model.SaleInvoice.LineTotal" readonly class="form-control" />
+                                <span asp-validation-for="@Model.SaleInvoice.LineTotal" class="text-danger"></span>
+                            </div>
+                            <div class="col-5 form-group-row">
+                                <label class="col-form-label" asp-for="@Model.SaleInvoice.Discount"></label>
+                                <input asp-for="@Model.SaleInvoice.Discount" class="form-control" value="0" />
+                                <span asp-validation-for="@Model.SaleInvoice.Discount" class="text-danger"></span>
+                            </div>
+                            <div class="col-10 form-group-row">
+                                <label class="col-form-label" asp-for="@Model.SaleInvoice.InvoiceTotal"></label>
+                                <input asp-for="@Model.SaleInvoice.InvoiceTotal" readonly class="form-control" />
+                                <span asp-validation-for="@Model.SaleInvoice.InvoiceTotal" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-3 form-group-row">
-                        <label class="col-form-label" asp-for="@Model.SaleInvoice.LineTotal"></label>
-                        <input asp-for="@Model.SaleInvoice.LineTotal" readonly class="form-control" />
-                        <span asp-validation-for="@Model.SaleInvoice.LineTotal" class="text-danger"></span>
-                    </div>
-                    <div class="col-2 form-group-row">
-                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Discount"></label>
-                        <input asp-for="@Model.SaleInvoice.Discount" class="form-control" value="0"/>
-                        <span asp-validation-for="@Model.SaleInvoice.Discount" class="text-danger"></span>
-                    </div>
-                    <div class="col-3 form-group-row">
-                        <label class="col-form-label" asp-for="@Model.SaleInvoice.InvoiceTotal"></label>
-                        <input asp-for="@Model.SaleInvoice.InvoiceTotal" readonly class="form-control" />
-                        <span asp-validation-for="@Model.SaleInvoice.InvoiceTotal" class="text-danger"></span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="col-3 form-group-row">
-                        <label class="col-form-label" asp-for="@Model.SaleInvoice.CustomerId"></label>
-                        <select id="ddlCustomerList" asp-for="@Model.SaleInvoice.CustomerId" asp-items="@Model.CustomerList" class="form-select"></select>
-                        <span asp-validation-for="@Model.SaleInvoice.CustomerId" class="text-danger"></span>
-                    </div>
-                    <div class="col-9 form-group-row">
-                        <label class="col-form-label" asp-for="@Model.SaleInvoice.Description"></label>
-                        <input asp-for="@Model.SaleInvoice.Description" class="form-control" />
-                        <span asp-validation-for="@Model.SaleInvoice.Description" class="text-danger"></span>
-                    </div>
+                    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
                 </div>
                 @*<div class="col-2 row" style="padding:0px 0px 0px 13px">
                         <div class="col-1 form-group-row text-end" style="padding:10px 1px;">
@@ -152,18 +158,26 @@
                             <label class="col-form-label" style="padding: 8px 0px 0px 0px" asp-for="@Model.Customer.IsActive"></label>
                         </div>
                     </div>*@
+
                 <div class="row">
                     <div class="col-8 form-group-row" style="margin:0px 0px 0px -98px">
                         <partial name="_CreateAndBackToListPartialView" />
                     </div>
-                    <div class="col-4 form-group-row" style="padding:23px 0px 0px 350px">
+                    <div class="col-4 form-group-row" style="padding:23px 0px 0px 298px">
                         <button type="button" class="btn btn-success" id="Btn_AddInvoiceItem"><i class="fa-solid fa-plus"></i></button>
                     </div>
                 </div>
                 <br />
-                <div class="border SaleInvoiceItem" style="margin:-5px -1px 1px -1px;padding:0px 5px 12px 2px">
 
-                    @*ViewBag.RowCounter = 0;*@
+                <div class="row border" style="background-color:lightslategrey;color:white;margin:0px 50px 0px 0px">
+                    <label class=" col-lg-3 col-form-label form-group-row" style="margin:0px -2px 0px 0px" asp-for="@Model.SaleInvoiceItems.ItemId"></label>
+                    <label class=" col-lg-2 col-form-label form-group-row" style="margin:0px -2px 0px 0px" asp-for="@Model.SaleInvoiceItems.Quantity"></label>
+                    <label class=" col-lg-2 col-form-label form-group-row" style="margin:0px -2px 0px 0px" asp-for="@Model.SaleInvoiceItems.Rate"></label>
+                    <label class=" col-lg-2 col-form-label form-group-row" style="margin:0px -1px 0px 0px" asp-for="@Model.SaleInvoiceItems.Discount"></label>
+                    <label class=" col-lg-2 col-form-label form-group-row">Total</label>
+                </div>
+                <div class="SaleInvoiceItem" style="margin:-5px -1px 1px -1px;padding:0px 5px 12px 2px">
+
                     <partial name="_SalesInvoiceItemPartialView" />
                 </div>
 

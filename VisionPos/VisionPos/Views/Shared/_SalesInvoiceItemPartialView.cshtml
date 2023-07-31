@@ -5,33 +5,28 @@
 
 
 
-<div class="row row_@Model.myCount">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="col-3 form-group-row">
-        <label class="col-form-label" asp-for="@Model.SaleInvoiceItems.ItemId"></label>
+<div class="row row_@Model.myCount" style="padding:14px 0px 0px 0px">
+    @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
+    <div class="col-lg-3 form-group-row" style="margin:0px -13px 0px 0px">
         <select asp-for="@Model.SaleInvoiceItems.ItemId" onchange="getrate(@Model.myCount)" asp-items="@Model.ItemsList" class="form-select PItemsList_@Model.myCount" id="PItemsList"></select>
         <span asp-validation-for="@Model.SaleInvoiceItems.ItemId" class="text-danger"></span>
     </div>
-    <div class="col-2 form-group-row">
-        <label class="col-form-label" asp-for="@Model.SaleInvoiceItems.Quantity"></label>
+    <div class="col-lg-2 form-group-row" style="margin:0px -13px 0px 0px">
         <input type="datetime" asp-for="@Model.SaleInvoiceItems.Quantity" onchange="calculateTotalForRow(@Model.myCount)" class="form-control SIQuantity_@Model.myCount" />
         <span asp-validation-for="@Model.SaleInvoiceItems.Quantity" class="text-danger"></span>
     </div>
-    <div class="col-2 form-group-row">
-        <label class="col-form-label" asp-for="@Model.SaleInvoiceItems.Rate"></label>
+    <div class="col-lg-2 form-group-row" style="margin:0px -13px 0px 0px">
         <input asp-for="@Model.SaleInvoiceItems.Rate" readonly class="form-control SIRate_@Model.myCount" />
         <span asp-validation-for="@Model.SaleInvoiceItems.Rate" class="text-danger"></span>
     </div>
-    <div class="col-2 form-group-row">
-        <label class="col-form-label" asp-for="@Model.SaleInvoice.Discount"></label>
+    <div class="col-2 form-group-row" style="margin:0px -13px 0px 0px">
         <input asp-for="@Model.SaleInvoice.Discount" onchange="calculateTotalAfterDiscount(@Model.myCount)" class="form-control SIDiscount_@Model.myCount" value="0"/>
         <span asp-validation-for="@Model.SaleInvoice.Discount" class="text-danger"></span>
     </div>
-    <div class="col-2 form-group-row">
-        <label type="text" class="col-form-label">Total</label>
+    <div class="col-lg-2 form-group-row">
         <input id="SaleItemTotal" readonly class="form-control" />
     </div>
-    <div class="col-1 form-group-row" style="padding:37px 0px 0px 26px">
+    <div class="col-1 form-group-row" style="padding:0px 0px 0px 27px">
         <button type="submit" class="btn btn-danger" id="Btn_DeleteInvoiceItem"><i class="fa-solid fa-trash"></i></button>
     </div>
 </div>

@@ -29,8 +29,8 @@ namespace VisionPos.Models
 
 
         [Required]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
-        [Range(0, 9999999999999999.99)]
+        //[RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        //[Range(0, 9999999999999999.99)]
         [DisplayName("Line Total")]
         public decimal LineTotal { get; set; }
 
@@ -43,8 +43,8 @@ namespace VisionPos.Models
 
 
         [Required]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
-        [Range(0, 9999999999999999.99)]
+        //[RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        //[Range(0, 9999999999999999.99)]
         [DisplayName("Total Invoice")]
         public decimal InvoiceTotal { get; set; }
 
