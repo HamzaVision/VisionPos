@@ -8,7 +8,7 @@ using VisionPos.Data;
 
 #nullable disable
 
-namespace VisionPos.Data.Migrations
+namespace VisionPos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot

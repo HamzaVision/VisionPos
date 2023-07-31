@@ -24,22 +24,22 @@ namespace VisionPos.Models
         public virtual tbItems TbItems { get; set; }
 
         [Required]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
-        [Range(0, 9999999999999999.99)]
+        //[RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        //[Range(0, 9999999999999999.99)]
         [DisplayName("Rate")]
         public decimal Rate { get; set; }
 
         [Required]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
-        [Range(0, 9999999999999999.99)]
+        //[RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        //[Range(0, 9999999999999999.99)]
         [DisplayName("Quantity")]
         public decimal Quantity { get; set; }
 
-        [Required]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
-        [Range(0, 9999999999999999.99)]
+
+        //[RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        //[Range(0, 9999999999999999.99)]
         [DisplayName("Discount")]
-        public decimal Discount { get; set; }
+        public decimal? Discount { get; set; }
 
 
         [Required]

@@ -24,7 +24,7 @@
     </div>
     <div class="col-2 form-group-row">
         <label class="col-form-label" asp-for="@Model.SaleInvoice.Discount"></label>
-        <input asp-for="@Model.SaleInvoice.Discount" onchange="calculateTotalAfterDiscount(@Model.myCount)" class="form-control SIDiscount_@Model.myCount" />
+        <input asp-for="@Model.SaleInvoice.Discount" onchange="calculateTotalAfterDiscount(@Model.myCount)" class="form-control SIDiscount_@Model.myCount" value="0"/>
         <span asp-validation-for="@Model.SaleInvoice.Discount" class="text-danger"></span>
     </div>
     <div class="col-2 form-group-row">

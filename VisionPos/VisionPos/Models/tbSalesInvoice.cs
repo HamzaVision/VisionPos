@@ -23,10 +23,9 @@ namespace VisionPos.Models
         public virtual Customer Customer { get; set; }
 
 
-        [Required]
         [Column(TypeName = "VARCHAR")]
         [StringLength(500)]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
 
         [Required]
@@ -36,11 +35,11 @@ namespace VisionPos.Models
         public decimal LineTotal { get; set; }
 
 
-        [Required]
-        [RegularExpression(@"^\d+(\.\d{1,2})?$")]
-        [Range(0, 9999999999999999.99)]
+
+        //[RegularExpression(@"^\d+(\.\d{1,2})?$")]
+        //[Range(0, 9999999999999999.99)]
         [DisplayName("Discount")]
-        public decimal Discount { get; set; }
+        public decimal? Discount { get; set; }
 
 
         [Required]

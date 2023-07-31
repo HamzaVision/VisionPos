@@ -42,7 +42,7 @@
 <form method="post" asp-action="@action">
     <div style="padding: 40px 0px 0px 40px ">
         <div class="whitebackgroundBorder" style="width:950px;">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div asp-validation-summary="ModelOnly" class="text-danger"></div>*@
             @if (action == "Edit")
             {
                 <h4 class="text-info">Edit</h4>
@@ -68,7 +68,7 @@
                     <div class="col-8 form-group-row">
                         <label class="col-form-label" asp-for="@Model.SaleInvoice.Description"></label>
                         <input asp-for="@Model.SaleInvoice.Description" class="form-control" value="@Model.SaleInvoice.Description" />
-                        <span asp-validation-for="@Model.SaleInvoice.Description" class="text-danger"></span>
+                        @*<span asp-validation-for="@Model.SaleInvoice.Description" class="text-danger"></span>*@
                     </div>
                     <div class="col-4 form-group-row">
                         <label class="col-form-label" asp-for="@Model.SaleInvoice.LineTotal"></label>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="col-2 form-group-row">
                         <label class="col-form-label" asp-for="@Model.SaleInvoice.Discount"></label>
-                        <input asp-for="@Model.SaleInvoice.Discount" class="form-control" />
+                        <input asp-for="@Model.SaleInvoice.Discount" class="form-control" value="0"/>
                         <span asp-validation-for="@Model.SaleInvoice.Discount" class="text-danger"></span>
                     </div>
                     <div class="col-3 form-group-row">
@@ -131,6 +131,7 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="col-3 form-group-row">
                         <label class="col-form-label" asp-for="@Model.SaleInvoice.CustomerId"></label>
                         <select id="ddlCustomerList" asp-for="@Model.SaleInvoice.CustomerId" asp-items="@Model.CustomerList" class="form-select"></select>
@@ -161,6 +162,7 @@
                 </div>
                 <br />
                 <div class="border SaleInvoiceItem" style="margin:-5px -1px 1px -1px;padding:0px 5px 12px 2px">
+
                     @*ViewBag.RowCounter = 0;*@
                     <partial name="_SalesInvoiceItemPartialView" />
                 </div>
