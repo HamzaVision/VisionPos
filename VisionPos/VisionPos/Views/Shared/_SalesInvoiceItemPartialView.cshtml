@@ -12,8 +12,8 @@
         <span asp-validation-for="@Model.SaleInvoiceItems.ItemId" class="text-danger"></span>
     </div>
     <div class="col-lg-2 form-group-row" style="margin:0px -13px 0px 0px">
-        <input type="datetime" asp-for="@Model.SaleInvoiceItems.Quantity" onchange="calculateTotalForRow(@Model.myCount)" class="form-control SIQuantity_@Model.myCount" />
-        <span asp-validation-for="@Model.SaleInvoiceItems.Quantity" class="text-danger"></span>
+        <input asp-for="@Model.SaleInvoiceItems.Quantity" onchange="calculateTotalForRow(@Model.myCount)" class="form-control SIQuantity_@Model.myCount"/>
+        @*<span asp-validation-for="@Model.SaleInvoiceItems.Quantity" class="text-danger"></span>*@
     </div>
     <div class="col-lg-2 form-group-row" style="margin:0px -13px 0px 0px">
         <input asp-for="@Model.SaleInvoiceItems.Rate" readonly class="form-control SIRate_@Model.myCount" />
