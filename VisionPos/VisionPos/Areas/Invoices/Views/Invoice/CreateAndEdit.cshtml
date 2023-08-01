@@ -240,20 +240,38 @@
                     success: function (result) {
                         if (result != null) {
                             $rate.val(result);
-                            var quantity = parseFloat($row.find('.SIQuantity_' + count).val());
-                            var rate = parseFloat($row.find('.SIRate_' + count).val());
-                            var total = quantity * rate;
-                            if (!isNaN(total)) {
-                                var Discount = parseFloat($row.find('.SIDiscount_' + count).val());
+                            const inputValue = parseFloat($row.find('.SIQuantity_' + count).val().trim());
+                            /*debugger*/
+                            if (inputValue === undefined || inputValue === null || inputValue === '' || inputValue === 0)
+                            {
+                                /*toastr.error('Discount Should be low');*/
+                                $row.find('#SaleItemTotal').val(''); 
+                            }
+                            else
+                            {
+                                var quantity = parseFloat($row.find('.SIQuantity_' + count).val());
+                                var rate = parseFloat($row.find('.SIRate_' + count).val());
                                 var total = quantity * rate;
-                                var Total = total - Discount;
-                                if (!isNaN(Total)) {
-                                    $row.find('#SaleItemTotal').val(Total.toFixed(2)); // Set the total value in the respective cell
-                                } else {
+                                if (!isNaN(total)) {
+                                    var Discount = parseFloat($row.find('.SIDiscount_' + count).val());
+                                    if (total <= Discount) {
+                                        toastr.error('Discount Should be low');
+                                        $row.find('.SIDiscount_' + count).val('');
+                                        total = quantity * rate;
+                                        $row.find('#SaleItemTotal').val(total.toFixed(2));
+                                    }
+                                    else {
+                                        var Total = total - Discount;
+                                        if (!isNaN(Total)) {
+                                            $row.find('#SaleItemTotal').val(Total.toFixed(2)); // Set the total value in the respective cell
+                                        } else {
+                                            $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+                                        }
+                                    }
+                                }
+                                else {
                                     $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
                                 }
-                            } else {
-                                $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
                             }
                         }
                         else {
@@ -274,15 +292,16 @@
                 /*debugger*/
                 /*errorMessageShown = false;*/
                 var $row = $(this).closest('.row_' + count);
-                const inputValue = $row.find('.SIQuantity_' + count).val().trim();
+                const inputValue = parseFloat($row.find('.SIQuantity_' + count).val().trim());
                 var valueSelected = $row.find('.PItemsList_' + count).val().trim();
-                debugger
+                /*debugger*/
                 if (valueSelected === undefined || valueSelected === null || valueSelected === '' || valueSelected === '0') {
                     toastr.error('First Select Any Item');   
                 }
                 else
                 {
-                    if (inputValue === undefined || inputValue === null || inputValue === '') {
+                    if (inputValue === undefined || inputValue === null || inputValue === '' || inputValue === 0)
+                    {
                         toastr.error('Enter Any Quantity');
                         $row.find('#SaleItemTotal').val('');
                     }
@@ -293,14 +312,24 @@
                         var total = quantity * rate;
                         if (!isNaN(total)) {
                             var Discount = parseFloat($row.find('.SIDiscount_' + count).val());
-                            var total = quantity * rate;
-                            var Total = total - Discount;
-                            if (!isNaN(Total)) {
-                                $row.find('#SaleItemTotal').val(Total.toFixed(2)); // Set the total value in the respective cell
-                            } else {
-                                $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+                            if (total <= Discount) {
+                                toastr.error('Discount Should be low');
+                                $row.find('.SIDiscount_' + count).val('');
+                                total = quantity * rate;
+                                $row.find('#SaleItemTotal').val(total.toFixed(2));
                             }
-                        } else {
+                            else
+                            {
+                                var Total = total - Discount;
+                                if (!isNaN(Total)) {
+                                    $row.find('#SaleItemTotal').val(Total.toFixed(2)); // Set the total value in the respective cell
+                                } else {
+                                    $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+                                }
+                            }
+                        }
+                        else
+                        {
                             $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
                         }
                     }
@@ -319,21 +348,38 @@
                 if (valueSelected === undefined || valueSelected === null || valueSelected === '' || valueSelected === '0') {
                     toastr.error('First Choose the Item From the List');
                 }
-                else
-                {
-                    if (quantity === undefined || quantity === null || quantity === '' || quantity === 0) {
+                else {
+                    if (quantity === undefined || quantity === null || quantity === '' || quantity === 0 || quantity === 0.00) {
                         toastr.error('First Enter the Quantity');
                     }
                     else
                     {
+                        /*debugger*/
                         var Discount = parseFloat($row.find('.SIDiscount_' + count).val());
                         var rate = parseFloat($row.find('.SIRate_' + count).val());
                         var total = quantity * rate;
-                        var Total = total - Discount;
-                        if (!isNaN(Total)) {
-                            $row.find('#SaleItemTotal').val(Total.toFixed(2)); // Set the total value in the respective cell
-                        } else {
-                            $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+                        if (total <= Discount) {
+                            toastr.error('Discount Should be low');
+                            $row.find('.SIDiscount_' + count).val('');
+                            total = quantity * rate;
+                            $row.find('#SaleItemTotal').val(total.toFixed(2));
+                        }
+                        else
+                        {
+                            if (!isNaN(Discount))
+                            {
+                                var Total = total - Discount;
+                                if (!isNaN(Total)) {
+                                    $row.find('#SaleItemTotal').val(Total.toFixed(2)); // Set the total value in the respective cell
+                                } else {
+                                    $row.find('#SaleItemTotal').val(''); // Clear the total value if any invalid input
+                                }
+                            }
+                            else
+                            {
+                                $row.find('#SaleItemTotal').val(total.toFixed(2));
+                            }
+                            
                         }
                     }
                 }
